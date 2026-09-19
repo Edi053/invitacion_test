@@ -1,0 +1,1206 @@
+/* ==========================================================
+   BODA DE EDINSON BARRERA & JENNIFER SEQUEIRA
+   Estilos de Alta Fidelidad - Módulo de Invitados
+   Animaciones @keyframes, Tipografías de Lujo y Diseño Responsive
+   ========================================================== */
+
+:root {
+  --ivory-bg: #fdfbf7;
+  --ivory-paper: #faf6ee;
+  --ivory-card: #fffefb;
+  --gold-primary: #bfa15f;
+  --gold-dark: #7a5818;
+  --gold-light: #e8d8a7;
+  --gold-gradient: linear-gradient(135deg, #7c5717 0%, #b88628 30%, #e2be6c 50%, #9c7120 75%, #63430c 100%);
+  --gold-border: rgba(191, 161, 95, 0.45);
+  --text-dark: #231f1a;
+  --text-muted: #5e574f;
+  --eucalyptus-green: #4a6755;
+  --eucalyptus-soft: #7d9685;
+  --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', 'Alex Brush', cursive;
+  --font-sans: 'Montserrat', sans-serif;
+  --shadow-lux: 0 18px 45px rgba(40, 30, 15, 0.15), 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #1e2421;
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow-x: hidden;
+  padding: 16px 12px 60px 12px;
+}
+
+/* ==========================================================
+   FONDO AMBIENTAL CON DESTELLOS Y PÉTALOS
+   ========================================================== */
+.ambient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 15%, #2a332d 0%, #171c19 65%, #0f1210 100%);
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+}
+
+.orb-1 {
+  width: 380px;
+  height: 380px;
+  background: #d4af37;
+  top: -100px;
+  left: -100px;
+}
+
+.orb-2 {
+  width: 420px;
+  height: 420px;
+  background: #7d9685;
+  bottom: -60px;
+  right: -90px;
+}
+
+#petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-petal {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 248, 230, 0.9) 0%, rgba(212, 175, 55, 0.4) 100%);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.65;
+  animation: petalFall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-30px) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================
+   BOTÓN FLOTANTE DE MÚSICA
+   ========================================================== */
+.floating-music-btn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 48px;
+  height: 48px;
+  background: rgba(253, 251, 247, 0.96);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+  outline: none;
+}
+
+.floating-music-btn:hover {
+  transform: scale(1.08);
+}
+
+.music-icon {
+  font-size: 20px;
+}
+
+.floating-music-btn.playing .music-waves {
+  display: flex;
+}
+
+.music-waves {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  gap: 2.5px;
+}
+
+.music-waves span {
+  width: 2px;
+  height: 8px;
+  background-color: var(--gold-dark);
+  border-radius: 1px;
+  animation: waveBar 0.9s infinite ease-in-out;
+}
+
+.music-waves span:nth-child(2) { animation-delay: 0.2s; height: 13px; }
+.music-waves span:nth-child(3) { animation-delay: 0.4s; height: 8px; }
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1.3); }
+}
+
+/* ==========================================================
+   SECCIÓN DEL SOBRE VIRTUAL (MÓDULO DE ENTRADA)
+   ========================================================== */
+.envelope-section {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  perspective: 1200px;
+}
+
+.envelope-section.hidden {
+  display: none;
+}
+
+.envelope-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-card {
+  width: 100%;
+  height: 590px;
+  background: #fdfaf3;
+  border-radius: 6px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.envelope-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 0 1.5px rgba(212, 175, 55, 0.45);
+}
+
+/* Tarjeta interior asomándose en el sobre */
+.envelope-peek-card {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 82%;
+  height: 95%;
+  background: #fffefc;
+  border: 1px solid rgba(191, 161, 95, 0.35);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 36px;
+  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.peek-monogram img {
+  width: 125px;
+  height: auto;
+  opacity: 0.95;
+}
+
+.peek-text {
+  font-family: var(--font-script);
+  font-size: 34px;
+  color: #a4823d;
+  margin-top: 18px;
+  text-shadow: 0 1px 2px rgba(164, 130, 61, 0.2);
+}
+
+/* Solapa curva del sobre exterior (exacta a la foto física) */
+.envelope-curved-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 63%;
+  height: 100%;
+  background: linear-gradient(135deg, #faf5eb 0%, #f4ece0 100%);
+  border-top-right-radius: 220px 50%;
+  border-bottom-right-radius: 220px 50%;
+  box-shadow: 8px 0 22px rgba(0, 0, 0, 0.16);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.25);
+  transform-origin: left center;
+  z-index: 10;
+}
+
+/* Cinta de raso horizontal */
+.ribbon-band {
+  position: absolute;
+  top: 38%;
+  left: 0;
+  width: 100%;
+  height: 66px;
+  background: linear-gradient(180deg, #f7f3e8 0%, #fffdf9 30%, #ebdcc5 70%, #f6f1e3 100%);
+  box-shadow: 0 6px 16px rgba(60, 45, 20, 0.22), inset 0 1.5px 3px rgba(255, 255, 255, 0.9), inset 0 -1.5px 3px rgba(150, 120, 70, 0.35);
+  z-index: 20;
+}
+
+.ribbon-sheen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* Lazo y etiqueta colgante */
+.bow-container {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -10px);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ramita floral seca */
+.dried-flower-sprig {
+  position: absolute;
+  top: -85px;
+  left: 8px;
+  width: 80px;
+  height: 110px;
+  pointer-events: none;
+  z-index: 28;
+  transform: rotate(-5deg);
+}
+
+.sprig-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(1px 2px 2.5px rgba(0, 0, 0, 0.2));
+}
+
+/* Lazo de raso satinado 3D */
+.satin-bow {
+  position: relative;
+  width: 154px;
+  height: 68px;
+}
+
+.bow-wing {
+  position: absolute;
+  top: 5px;
+  width: 70px;
+  height: 54px;
+  background: radial-gradient(ellipse at 40% 40%, #fffef9 0%, #ecd8bd 60%, #ceb491 100%);
+  border-radius: 50% 20% 50% 20%;
+  box-shadow: 0 7px 14px rgba(80, 60, 20, 0.25);
+}
+
+.bow-left {
+  left: 12px;
+  transform: rotate(-18deg);
+  border-top-left-radius: 32px;
+}
+
+.bow-right {
+  right: 12px;
+  transform: rotate(18deg) scaleX(-1);
+  border-top-left-radius: 32px;
+}
+
+.bow-center-knot {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 38px;
+  background: radial-gradient(circle at 45% 40%, #fffdf8 0%, #ebd7ba 50%, #c4a782 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(70, 50, 20, 0.35);
+  z-index: 5;
+}
+
+.bow-tail {
+  position: absolute;
+  top: 32px;
+  width: 36px;
+  height: 52px;
+  background: linear-gradient(135deg, #f7eedf 0%, #ebd3b4 60%, #c7ab86 100%);
+  box-shadow: 0 5px 8px rgba(70, 50, 20, 0.2);
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 85%);
+}
+
+.tail-left {
+  left: 42px;
+  transform: rotate(14deg);
+}
+
+.tail-right {
+  right: 42px;
+  transform: rotate(-14deg) scaleX(-1);
+}
+
+/* Etiqueta colgante personalizada (idéntica a la tarjeta física) */
+.envelope-tag {
+  margin-top: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tag-string {
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, #a48455, #caba9c);
+}
+
+.tag-inner {
+  background: #fcf9f2;
+  padding: 8px;
+  border-radius: 3px;
+  box-shadow: 0 10px 24px rgba(50, 40, 20, 0.22);
+  transform: rotate(-2deg);
+}
+
+.tag-border {
+  border: 1px solid var(--gold-primary);
+  outline: 1px solid rgba(191, 161, 95, 0.3);
+  outline-offset: 2.5px;
+  padding: 16px 20px 14px 20px;
+  text-align: center;
+  min-width: 210px;
+  max-width: 240px;
+  position: relative;
+  overflow: hidden;
+  background: #fffefb;
+}
+
+.tag-recipient-label {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #8c7247;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.tag-family-name {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: #2b251e;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.tag-passes-pill {
+  display: inline-block;
+  background: #f2e9d8;
+  color: #6e5223;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 12px;
+  border-radius: 14px;
+  border: 0.5px solid rgba(191, 161, 95, 0.5);
+}
+
+.tag-foliage {
+  margin-top: 8px;
+  line-height: 0;
+}
+
+.tag-foliage img {
+  width: 95px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Indicador animado para abrir el sobre */
+.open-instruction {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+
+.touch-icon {
+  font-size: 32px;
+  animation: softBounce 1.8s infinite ease-in-out;
+}
+
+.touch-text {
+  color: #e8d8a7;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 6px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.pulse-ring {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: -6px;
+  animation: pulseGlow 1.8s infinite ease-out;
+}
+
+@keyframes softBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* ==========================================================
+   ANIMACIONES @KEYFRAMES DE APERTURA DEL SOBRE
+   ========================================================== */
+.envelope-section.opening-active .bow-container {
+  animation: untieBow 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.envelope-section.opening-active .ribbon-band {
+  animation: ribbonSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.envelope-section.opening-active .envelope-curved-flap {
+  animation: openFlapCurved 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+.envelope-section.opening-active .envelope-card {
+  animation: envelopeFadeOut 0.8s ease-in 1.2s forwards;
+}
+
+.envelope-section.opening-active .open-instruction {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes untieBow {
+  0% {
+    transform: translate(-50%, -10px) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -25px) scale(1.06) rotate(-4deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, 45px) scale(0.85);
+    opacity: 0;
+  }
+}
+
+@keyframes ribbonSlide {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(1.08) translateY(10px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scaleX(1.15) translateY(35px);
+    opacity: 0;
+  }
+}
+
+@keyframes openFlapCurved {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-175deg);
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes envelopeFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06) translateY(-30px);
+    pointer-events: none;
+  }
+}
+
+/* ==========================================================
+   SECCIÓN DE LA INVITACIÓN INTERIOR
+   ========================================================== */
+.invitation-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--ivory-card);
+  border-radius: 6px;
+  box-shadow: var(--shadow-lux);
+  padding: 16px;
+  position: relative;
+  animation: cardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.invitation-card.hidden {
+  display: none;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Marco perimetral dorado doble */
+.card-gold-frame {
+  border: 2px solid var(--gold-primary);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.card-inner-frame {
+  border: 1px solid rgba(191, 161, 95, 0.45);
+  padding: 28px 18px 36px 18px;
+  border-radius: 2px;
+  position: relative;
+  background: #fffdf9;
+  overflow: hidden;
+}
+
+/* Follaje botánico de acuarela */
+.foliage-corner {
+  position: absolute;
+  pointer-events: none;
+}
+
+.foliage-corner.top-left {
+  top: -8px;
+  left: -8px;
+  width: 140px;
+  z-index: 2;
+}
+
+/* Follaje inferior como fondo sutil detrás del texto */
+.foliage-corner.bottom-right {
+  bottom: -15px;
+  right: -15px;
+  width: 165px;
+  opacity: 0.42;
+  z-index: 1;
+}
+
+.foliage-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================
+   ENCABEZADO DE LA TARJETA
+   ========================================================== */
+.card-header {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  margin-bottom: 24px;
+}
+
+.monogram-container {
+  margin: 0 auto 14px auto;
+  width: 160px;
+}
+
+.monogram-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(191, 161, 95, 0.25));
+}
+
+.san-agustin-quote {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #8c7247;
+  text-transform: uppercase;
+  margin: 14px 0 6px 0;
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+.quote-mark {
+  color: var(--gold-primary);
+  font-size: 16px;
+}
+
+.san-agustin-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: #a4823d;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.blessing-text {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #7d6b55;
+  text-transform: uppercase;
+  margin-top: 18px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* Nombres de los novios en caligrafía dorada de lujo */
+.couple-names {
+  margin: 12px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.groom-name, .bride-name {
+  font-family: var(--font-script);
+  font-size: 46px;
+  font-weight: normal;
+  line-height: 1.15;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(191, 161, 95, 0.25);
+}
+
+.ampersand {
+  font-family: var(--font-script);
+  font-size: 36px;
+  color: #bfa15f;
+  margin: -2px 0;
+}
+
+.invitation-phrase {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: #5a4f43;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Banner con la fecha de la boda */
+.wedding-date-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 10px 0;
+  gap: 12px;
+}
+
+.date-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  flex: 1;
+}
+
+.date-text {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #2b251e;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   CONTADOR REGRESIVO
+   ========================================================== */
+.countdown-section {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  margin: 24px 0 16px 0;
+}
+
+.section-subtitle {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: #8c7247;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-box {
+  background: linear-gradient(135deg, #fdfbf7 0%, #f6f0e4 100%);
+  border: 1px solid rgba(191, 161, 95, 0.45);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-width: 60px;
+  box-shadow: 0 4px 10px rgba(191, 161, 95, 0.12);
+}
+
+.countdown-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: #6a4c14;
+  line-height: 1;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #8c7247;
+  margin-top: 4px;
+}
+
+.countdown-sep {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--gold-primary);
+  font-weight: 600;
+  margin-top: -8px;
+}
+
+.calendar-btn-wrap {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--gold-primary);
+  color: #6e5223;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #f7eedf;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(191, 161, 95, 0.2);
+}
+
+/* Divisor ornamental */
+.gold-divider {
+  text-align: center;
+  color: var(--gold-primary);
+  font-size: 14px;
+  margin: 26px 0;
+  position: relative;
+  z-index: 5;
+}
+
+/* ==========================================================
+   ITINERARIO: CEREMONIA Y RECEPCIÓN (TARJETA FÍSICA)
+   ========================================================== */
+.events-section {
+  position: relative;
+  z-index: 5;
+  margin: 10px 0 20px 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+@media (min-width: 480px) {
+  .events-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+.event-card {
+  background: rgba(255, 253, 249, 0.9);
+  border: 1px solid rgba(191, 161, 95, 0.35);
+  border-radius: 6px;
+  padding: 20px 14px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fbf5ea;
+  border: 1px solid var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(191, 161, 95, 0.18);
+}
+
+.event-badge-icon {
+  font-size: 20px;
+}
+
+.event-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #7a5818;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.event-venue {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #2b251e;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.event-address {
+  font-size: 12px;
+  color: #635b51;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.event-time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f7eedf;
+  padding: 4px 12px;
+  border-radius: 14px;
+  border: 0.5px solid rgba(191, 161, 95, 0.4);
+  margin: 8px 0;
+}
+
+.time-clock-icon {
+  font-size: 13px;
+}
+
+.time-text {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6b4d17;
+}
+
+.event-note {
+  font-size: 11px;
+  font-style: italic;
+  color: #7d7366;
+  margin: 6px 0 10px 0;
+  line-height: 1.35;
+}
+
+/* Códigos QR nítidos como en la tarjeta física */
+.event-qr-wrap {
+  margin: 8px 0 12px 0;
+  text-align: center;
+}
+
+.event-qr-img {
+  width: 95px;
+  height: 95px;
+  border: 1px solid rgba(191, 161, 95, 0.35);
+  border-radius: 4px;
+  padding: 3px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.qr-caption {
+  font-size: 10.5px;
+  color: #8c7247;
+  margin-top: 3px;
+}
+
+/* Botones de navegación directa */
+.event-action-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.btn-map {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.btn-map.google-maps {
+  background: #f0f6ff;
+  color: #1a73e8;
+  border-color: #d2e3fc;
+}
+
+.btn-map.google-maps:hover {
+  background: #e2edfd;
+  transform: translateY(-1.5px);
+}
+
+.btn-map.waze {
+  background: #f0fafb;
+  color: #008fa0;
+  border-color: #c9eff3;
+}
+
+.btn-map.waze:hover {
+  background: #e1f6f8;
+  transform: translateY(-1.5px);
+}
+
+/* ==========================================================
+   MUESTRAS DE CARIÑO / LLUVIA DE SOBRES
+   ========================================================== */
+.gift-section {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  background: #fcf9f2;
+  border: 1px dashed var(--gold-primary);
+  border-radius: 8px;
+  padding: 20px 16px;
+  margin: 20px 0;
+}
+
+.gift-icon-wrap {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.gift-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #7a5818;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.gift-subtitle {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #2b251e;
+  margin-bottom: 8px;
+}
+
+.gift-description {
+  font-size: 12px;
+  color: #5e5448;
+  line-height: 1.5;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* ==========================================================
+   CONFIRMACIÓN DE ASISTENCIA (RSVP)
+   ========================================================== */
+.rsvp-section {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  margin-top: 24px;
+}
+
+.rsvp-deadline-box {
+  background: #faf4e6;
+  border: 1px solid rgba(191, 161, 95, 0.4);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.deadline-highlight {
+  font-size: 12px;
+  color: #634b1b;
+  line-height: 1.4;
+}
+
+.deadline-highlight strong {
+  color: #7a5818;
+  font-weight: 700;
+}
+
+.rsvp-btn-container {
+  margin: 14px 0;
+}
+
+.btn-whatsapp-rsvp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(135deg, #1fb35c 0%, #158f48 100%);
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 35px;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(27, 143, 72, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-whatsapp-rsvp:hover {
+  transform: translateY(-2.5px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(27, 143, 72, 0.45);
+}
+
+.wa-icon {
+  font-size: 24px;
+}
+
+.wa-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.wa-main {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.wa-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.passes-notice {
+  font-size: 12px;
+  color: #6a5e50;
+  margin-top: 10px;
+}
+
+.passes-notice strong {
+  color: #2b251e;
+}
+
+/* ==========================================================
+   PIE DE TARJETA CON FIRMA NUPCIAL
+   ========================================================== */
+.card-footer {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(191, 161, 95, 0.25);
+}
+
+.footer-thanks {
+  font-family: var(--font-serif);
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  color: #7a6b57;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.footer-signature {
+  font-family: var(--font-script);
+  font-size: 38px;
+  color: #a4823d;
+  line-height: 1;
+}
+
+.footer-date {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #9c8971;
+  margin-top: 8px;
+}

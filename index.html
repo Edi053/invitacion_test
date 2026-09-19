@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Boda de Edinson Barrera & Jennifer Sequeira</title>
+  
+  <!-- Metadatos para compartir en WhatsApp, Facebook, iMessage, etc. -->
+  <meta property="og:title" content="💍 Nuestra Boda: Edinson & Jennifer">
+  <meta property="og:description" content="Nos casamos el Sábado 19 de Diciembre de 2026. ¡Acompáñanos a celebrar el inicio de nuestra vida juntos!">
+  <meta property="og:image" content="monogram.png">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#d4af37">
+
+  <!-- Tipografías elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Alex+Brush&family=Parisienne&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fondo ambiental romántico con destellos y partículas -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div id="petals-container"></div>
+  </div>
+
+  <!-- Botón flotante para música de fondo -->
+  <button id="musicToggleBtn" class="floating-music-btn" title="Activar/Silenciar Música" aria-label="Música de fondo">
+    <span class="music-icon" id="musicIcon">🎵</span>
+    <span class="music-waves">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+
+  <!-- ============================================== -->
+  <!-- SECCIÓN 1: SOBRE VIRTUAL INTERACTIVO CON KEYFRAMES -->
+  <!-- ============================================== -->
+  <div id="envelopeSection" class="envelope-section">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      
+      <!-- Tarjeta envolvente tipo sobre -->
+      <div class="envelope-card" id="envelopeCard">
+        
+        <!-- Tarjeta interior asomándose en el sobre -->
+        <div class="envelope-peek-card">
+ 
+          <img src="mano.jpeg" height="90%" alt="Monograma nupcial">
+          <!--
+                   <div class="peek-monogram">
+            <img src="digital.png" alt="Monograma nupcial">
+          </div>
+          <div class="peek-text">Edinson & Jennifer</div> -->
+        </div>
+
+        <!-- Solapa curva exterior (idéntica a la tarjeta física) -->
+        <div class="envelope-curved-flap" id="curvedFlap"></div>
+
+        <!-- Cinta de raso marfil horizontal -->
+        <div class="ribbon-band" id="ribbonBand">
+          <div class="ribbon-sheen"></div>
+        </div>
+
+        <!-- Lazo de raso satinado 3D, ramita seca y etiqueta colgante -->
+        <div class="bow-container" id="bowContainer">
+          
+          <!-- Ramita floral seca artística -->
+          <div class="dried-flower-sprig">
+            <svg viewBox="0 0 100 140" class="sprig-svg">
+              <path d="M50,140 Q45,80 30,30 Q28,10 35,5 Q40,10 36,25 Q32,50 48,90" stroke="#a48455" stroke-width="2" fill="none" />
+              <circle cx="35" cy="8" r="4" fill="#eed9be" />
+              <circle cx="28" cy="22" r="3.5" fill="#eed9be" />
+              <circle cx="42" cy="18" r="3" fill="#dfc09c" />
+              <circle cx="20" cy="35" r="3.5" fill="#e8cfb0" />
+              <circle cx="40" cy="45" r="3" fill="#dfc09c" />
+              <path d="M48,85 Q65,60 75,20 Q78,10 72,8" stroke="#a48455" stroke-width="1.8" fill="none" />
+              <circle cx="72" cy="8" r="4" fill="#eed9be" />
+              <circle cx="80" cy="20" r="3" fill="#dfc09c" />
+              <circle cx="68" cy="35" r="3.5" fill="#e8cfb0" />
+            </svg>
+          </div>
+
+          <!-- Moño de raso satinado -->
+          <div class="satin-bow">
+            <div class="bow-wing bow-left"></div>
+            <div class="bow-wing bow-right"></div>
+            <div class="bow-center-knot"></div>
+            <div class="bow-tail tail-left"></div>
+            <div class="bow-tail tail-right"></div>
+          </div>
+
+          <!-- Etiqueta personalizada colgante -->
+          <div class="envelope-tag" id="envelopeTag">
+            <div class="tag-string"></div>
+            <div class="tag-inner">
+              <div class="tag-border">
+                <div class="tag-recipient-label">Para:</div>
+                <div class="tag-family-name" id="tagFamilyName">Familia Flores Oporta</div>
+                <div class="tag-passes-pill" id="tagPassesPill">Válido para 2 pases</div>
+                <div class="tag-foliage">
+                  <img src="tag-foliage.png" alt="Follaje botánico de eucalipto">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Indicador animado para abrir el sobre -->
+      <div class="open-instruction" id="openInstruction">
+        <div class="touch-icon">👆</div>
+        <p class="touch-text">Toca el sobre para abrir tu invitación</p>
+        <div class="pulse-ring"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- SECCIÓN 2: LA INVITACIÓN INTERIOR COMPLETA -->
+  <!-- ============================================== -->
+  <main id="invitationCard" class="invitation-card hidden">
+    
+    <!-- Marco perimetral dorado -->
+    <div class="card-gold-frame">
+      <div class="card-inner-frame">
+
+        <!-- Follaje botánico de acuarela superior izquierdo -->
+        <div class="foliage-corner top-left">
+          <img src="foliage-top-left.png" alt="Eucalipto en acuarela" class="foliage-img">
+        </div>
+
+        <!-- Follaje botánico de acuarela inferior derecho (sutil en el fondo) -->
+        <div class="foliage-corner bottom-right">
+          <img src="foliage-bottom-right.png" alt="Eucalipto en acuarela" class="foliage-img">
+        </div>
+
+        <!-- ENCABEZADO Y MONOGRAMA -->
+        <header class="card-header">
+          <div class="monogram-container">
+            <img src="monogram.png" alt="(B+J)³ = Amor y Cruz - 19/12/26" class="monogram-img">
+          </div>
+
+          <blockquote class="san-agustin-quote">
+            <span class="quote-mark">“</span>LA MEDIDA DEL AMOR ES AMAR SIN MEDIDA<span class="quote-mark">”</span>
+            <cite>SAN AGUSTÍN</cite>
+          </blockquote>
+
+          <p class="blessing-text">
+            CON LA BENDICIÓN DE DIOS Y NUESTROS PADRES, NOSOTROS,
+          </p>
+
+          <!-- NOMBRES DE LOS NOVIOS EN CALIGRAFÍA DORADA -->
+          <div class="couple-names">
+            <h1 class="groom-name">Edinson Barrera</h1>
+            <span class="ampersand">&</span>
+            <h1 class="bride-name">Jennifer Sequeira</h1>
+          </div>
+
+          <p class="invitation-phrase">
+            Les invitamos a celebrar el inicio de nuestra vida juntos
+          </p>
+
+          <!-- FECHA DESTACADA -->
+          <div class="wedding-date-banner">
+            <span class="date-line"></span>
+            <span class="date-text">SÁBADO 19 DE DICIEMBRE 2026</span>
+            <span class="date-line"></span>
+          </div>
+        </header>
+
+        <!-- CONTADOR REGRESIVO EN TIEMPO REAL -->
+        <section class="countdown-section">
+          <h2 class="section-subtitle">FALTAN PARA EL GRAN DÍA</h2>
+          <div class="countdown-grid" id="countdownGrid">
+            <div class="countdown-box">
+              <span class="countdown-num" id="days">00</span>
+              <span class="countdown-label">DÍAS</span>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="hours">00</span>
+              <span class="countdown-label">HORAS</span>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="minutes">00</span>
+              <span class="countdown-label">MIN</span>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="seconds">00</span>
+              <span class="countdown-label">SEG</span>
+            </div>
+          </div>
+
+          <!-- Botón de Agendar en Calendario -->
+          <div class="calendar-btn-wrap">
+            <button id="addToCalendarBtn" class="btn-secondary">
+              <span class="btn-icon">📅</span> Agendar en mi Calendario
+            </button>
+          </div>
+        </section>
+
+        <div class="gold-divider">
+          <span>❖</span>
+        </div>
+
+        <!-- ITINERARIO: CEREMONIA Y RECEPCIÓN -->
+        <section class="events-section">
+          <div class="events-grid">
+            
+            <!-- CEREMONIA RELIGIOSA -->
+            <article class="event-card">
+              <div class="event-icon-badge">
+                <span class="event-badge-icon">⛪</span>
+              </div>
+              <h3 class="event-title">CEREMONIA RELIGIOSA</h3>
+              <p class="event-venue">Santuario Parroquia Divino Niño</p>
+              
+              <div class="event-time-badge">
+                <span class="time-clock-icon">🕒</span>
+                <span class="time-text">04:30 p.m.</span>
+              </div>
+
+              <p class="event-note">Agradecemos su puntualidad para recibir el cortejo nupcial.</p>
+
+              <!-- Código QR original nítido 
+              <div class="event-qr-wrap">
+                <img src="qr-ceremonia.png" alt="QR Ceremonia" class="event-qr-img">
+                <p class="qr-caption">Escanear para ubicación</p>
+              </div>
+              -->
+
+              <!-- Botones de ubicación interactivos táctiles -->
+              <div class="event-action-buttons">
+                <a href="https://maps.app.goo.gl/CXqfHnXzowvSjKrR9" target="_blank" rel="noopener noreferrer" class="btn-map google-maps">
+                  <span class="map-icon">📍</span> Abrir en Google Maps
+                </a>
+                <a href="https://www.waze.com/es/live-map/directions?navigate=yes&to=ll.12.073109%2C-85.31011&from=place.w.179961977.1799816378.1947877&utm_medium=lm_share_directions&utm_campaign=default&utm_source=waze_website" target="_blank" rel="noopener noreferrer" class="btn-map waze">
+                  <span class="map-icon">🚗</span> Abrir en Waze
+                </a>
+              </div>
+            </article>
+
+            <!-- RECEPCIÓN -->
+            <article class="event-card">
+              <div class="event-icon-badge">
+                <span class="event-badge-icon">🥂</span>
+              </div>
+              <h3 class="event-title">RECEPCIÓN</h3>
+              <p class="event-venue">Hotel San Pedro</p>
+              <p class="event-address">Km 148, carretera Juigalpa – Rama</p>
+              
+              <div class="event-time-badge">
+                <span class="time-clock-icon">🕒</span>
+                <span class="time-text">07:00 p.m.</span>
+              </div>
+
+              <!-- Código QR original nítido 
+              <div class="event-qr-wrap">
+                <img src="qr-recepcion.png" alt="QR Recepción" class="event-qr-img">
+                <p class="qr-caption">Escanear para ubicación</p>
+              </div>
+              -->
+
+              <!-- Botones de ubicación interactivos táctiles -->
+              <div class="event-action-buttons">
+                <a href="https://maps.app.goo.gl/nHmTAobjximgbXkT9" target="_blank" rel="noopener noreferrer" class="btn-map google-maps">
+                  <span class="map-icon">📍</span> Abrir en Google Maps
+                </a>
+                <a href="https://www.waze.com/es/live-map/directions?navigate=yes&to=ll.12.073109%2C-85.31011&from=place.w.180027513.1800209591.5238316&utm_medium=lm_share_directions&utm_campaign=default&utm_source=waze_website" target="_blank" rel="noopener noreferrer" class="btn-map waze">
+                  <span class="map-icon">🚗</span> Abrir en Waze
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <div class="gold-divider">
+          <span>❖</span>
+        </div>
+
+        <!-- MUESTRAS DE CARIÑO / LLUVIA DE SOBRES -->
+        <section class="gift-section">
+          <div class="gift-icon-wrap">
+            <span class="gift-icon">✉️</span>
+          </div>
+          <h3 class="gift-title">MUESTRAS DE CARIÑO</h3>
+          <p class="gift-subtitle">Lluvia de sobres</p>
+          <p class="gift-description">
+            Su presencia y bendición es nuestro mayor regalo.
+          </p>
+        </section>
+
+        <!-- CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+        <section class="rsvp-section">
+          <div class="rsvp-deadline-box">
+            <p class="deadline-highlight">
+              Favor confirmar asistencia antes del <strong>15 de noviembre de 2026</strong>
+            </p>
+          </div>
+
+          <!-- Botón de Confirmación Directo por WhatsApp -->
+          <div class="rsvp-btn-container">
+            <a id="whatsappRsvpBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-rsvp">
+              <span class="wa-icon">💬</span>
+              <span class="wa-text">
+                <span class="wa-main">Confirmar Asistencia por WhatsApp</span>
+                <span class="wa-sub">Envía tu confirmación directamente a los novios</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="passes-notice" id="passesNotice">
+            Invitación reservada especialmente para: <strong id="invitationRecipientName">Familia Flores Oporta</strong>
+          </div>
+        </section>
+
+        <!-- PIE DE TARJETA CON AGRADECIMIENTO Y FIRMA -->
+        <footer class="card-footer">
+          <p class="footer-thanks">¡Esperamos contar con su compañía en este día tan especial!</p>
+          <p class="footer-signature">Edinson & Jennifer</p>
+          <p class="footer-date">19 · 12 · 2026</p>
+        </footer>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

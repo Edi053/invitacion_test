@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Novios · Creador de Invitaciones (Edinson & Jennifer)</title>
+
+  <!-- Tipografías elegantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ============================================== -->
+  <!-- MODAL DE ACCESO PRIVADO POR PIN -->
+  <!-- ============================================== -->
+  <div id="pinOverlay" class="pin-overlay">
+    <div class="pin-card">
+      <div class="pin-icon">🔐</div>
+      <h2 class="pin-title">Acceso de los Novios</h2>
+      <p class="pin-desc">Ingresa el PIN de seguridad para gestionar y crear invitaciones de boda.</p>
+      
+      <div class="pin-input-wrap">
+        <input type="password" id="inputPin" class="pin-input" maxlength="8" placeholder="••••" autocomplete="off">
+      </div>
+      <p id="pinErrorMsg" style="color: #e53e3e; font-size: 12px; margin-bottom: 12px; display: none;"></p>
+
+      <button id="btnUnlock" class="pin-btn">Entrar al Panel</button>
+      <p class="pin-hint">💡 PIN predeterminado: <strong>1912</strong> (Día y mes de la boda: 19 de Diciembre)</p>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+  <!-- ============================================== -->
+  <div class="admin-container">
+    
+    <!-- Encabezado de Marca -->
+    <header class="admin-header">
+      <div class="header-brand">
+        <img src="monogram.png" alt="Monograma Nupcial" class="header-monogram">
+        <div class="header-titles">
+          <h1>Panel de Novios · Edinson & Jennifer</h1>
+          <p>💍 Creador de Enlaces Seguros para WhatsApp · Sábado 19 de Diciembre 2026</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <a href="index.html" target="_blank" class="btn-header-action" title="Abrir la invitación pública">
+          <span>👁️</span> Ver Invitación Pública
+        </a>
+        <button id="btnChangePin" class="btn-header-action" title="Modificar el PIN de acceso">
+          <span>🔑</span> Cambiar PIN
+        </button>
+      </div>
+    </header>
+
+    <!-- Fila de Métricas Rápidas -->
+    <section class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-icon-box">👥</div>
+        <div class="metric-info">
+          <h3>Total Invitados</h3>
+          <p id="metricTotalGuests">0</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box">🎟️</div>
+        <div class="metric-info">
+          <h3>Pases Reservados</h3>
+          <p id="metricTotalPasses">0</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box">📲</div>
+        <div class="metric-info">
+          <h3>Invitaciones Enviadas</h3>
+          <p id="metricTotalSent">0</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box">🥂</div>
+        <div class="metric-info">
+          <h3>Confirmados</h3>
+          <p id="metricTotalConfirmed">0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Área Dividida: Formulario y Previa en Vivo -->
+    <div class="content-grid">
+      
+      <!-- Panel de Creación -->
+      <section class="card-panel">
+        <h2 class="panel-title"><span>✍️</span> Crear Nueva Invitación Personalizada</h2>
+        <p class="panel-subtitle">Completa los datos del invitado. Se generará un enlace protegido y un mensaje formal listo para WhatsApp.</p>
+
+        <div class="form-group">
+          <label class="form-label" for="inputGuestName">Nombre del Invitado o Familia:</label>
+          <input type="text" id="inputGuestName" class="form-control" placeholder="Ej: Familia Flores Oporta o Lic. Roberto Mendoza" value="Familia Flores Oporta">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Número de Pases Asignados:</label>
+          <div class="passes-selector" id="passesSelector">
+            <button type="button" class="pass-pill-btn" data-value="1">1 pase</button>
+            <button type="button" class="pass-pill-btn active" data-value="2">2 pases</button>
+            <button type="button" class="pass-pill-btn" data-value="3">3 pases</button>
+            <button type="button" class="pass-pill-btn" data-value="4">4 pases</button>
+            <button type="button" class="pass-pill-btn" data-value="5">5 pases</button>
+            <button type="button" class="pass-pill-btn" data-value="6">6 pases</button>
+          </div>
+          <input type="hidden" id="inputPasses" value="2">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="inputCouplePhone">WhatsApp de los Novios (para recibir RSVP):</label>
+            <input type="tel" id="inputCouplePhone" class="form-control" placeholder="Ej: 50588888888" value="50588888888">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="inputGuestPhone">WhatsApp del Invitado (opcional):</label>
+            <input type="tel" id="inputGuestPhone" class="form-control" placeholder="Ej: 50589999999">
+          </div>
+        </div>
+
+        <div class="format-toggle-box">
+          <label class="toggle-option">
+            <input type="checkbox" id="optSecureLink" checked>
+            <strong>Generar Enlace Seguro con Token Antimanipulación (Recomendado)</strong>
+          </label>
+          <p class="toggle-tip">Protege los pases y el nombre para que el invitado no pueda modificarlos en la barra del navegador.</p>
+        </div>
+
+        <!-- Caja de Salida -->
+        <div class="output-box">
+          <div class="output-label">Enlace listo para compartir:</div>
+          <div class="url-copy-row">
+            <input type="text" id="generatedUrlInput" class="url-input" readonly>
+            <button id="btnCopyUrl" class="btn-action-primary">📋 Copiar</button>
+          </div>
+
+          <div class="actions-buttons-grid">
+            <a id="btnSendWhatsApp" href="#" target="_blank" class="btn-whatsapp-send">
+              <span>📲</span> Enviar por WhatsApp
+            </a>
+            <button id="btnCopyMessage" class="btn-action-primary" style="background: #4a5568;">
+              <span>📋</span> Copiar Mensaje
+            </button>
+          </div>
+
+          <div style="margin-top: 12px;">
+            <button id="btnSaveGuest" class="btn-add-list" style="width: 100%;">
+              <span>➕</span> Guardar en mi Lista de Invitados
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel de Previa en Vivo -->
+      <section class="card-panel preview-panel-wrap">
+        <h2 class="panel-title"><span>👁️</span> Previa en Tiempo Real</h2>
+        <p class="panel-subtitle">Así se verá la etiqueta colgante en el sobre del invitado:</p>
+
+        <div class="envelope-mini-preview">
+          <!-- Tarjeta interior asomándose -->
+          <div class="mini-peek">
+            <img src="monogram.png" alt="Monograma">
+            <div class="mini-peek-title">Edinson & Jennifer</div>
+          </div>
+
+          <!-- Solapa curva exterior -->
+          <div class="mini-curved-flap"></div>
+          <!-- Cinta -->
+          <div class="mini-ribbon"></div>
+          
+          <!-- Moño y etiqueta -->
+          <div class="mini-bow-wrap">
+            <div class="mini-bow-knot"></div>
+            <div class="mini-tag">
+              <div class="mini-tag-to">PARA:</div>
+              <div class="mini-tag-name" id="miniTagName">Familia Flores Oporta</div>
+              <div class="mini-tag-passes" id="miniTagPasses">2 pases</div>
+            </div>
+          </div>
+        </div>
+
+        <a id="btnPreviewExternal" href="index.html" target="_blank" class="preview-open-btn">
+          🔗 Abrir Invitación Completa en Pestaña Nueva
+        </a>
+      </section>
+
+    </div>
+
+    <!-- Gestor de Lista de Invitados -->
+    <section class="table-panel">
+      <div class="table-header-row">
+        <div>
+          <h2 class="panel-title"><span>📋</span> Lista de Invitados y Control de Asistencia</h2>
+          <p class="panel-subtitle" style="margin-bottom: 0;">Los datos se guardan automáticamente en tu navegador para que no los pierdas.</p>
+        </div>
+
+        <div class="table-tools">
+          <input type="text" id="searchGuestInput" class="table-search" placeholder="🔍 Buscar por nombre o teléfono...">
+          <button id="btnExportCsv" class="btn-tool" title="Descargar en formato Excel">
+            <span>📥</span> Exportar a Excel (CSV)
+          </button>
+          <button id="btnClearAll" class="btn-tool" style="color: #991b1b; border-color: #fca5a5;" title="Vaciar toda la lista">
+            <span>🧹</span> Limpiar Lista
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="guests-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>Invitado / Familia</th>
+              <th>Pases</th>
+              <th>Teléfono</th>
+              <th>Estado</th>
+              <th style="width: 170px;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="guestsTableBody">
+            <!-- Renderizado dinámico desde admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
